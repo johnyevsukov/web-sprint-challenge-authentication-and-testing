@@ -19,7 +19,7 @@ router.post('/register', checkRegisterBody, checkUsernameFree, (req, res, next) 
     .catch(next);
 });
 
-router.post('/login', checkRegisterBody, checkUsernameExists, (req, res) => {
+router.post('/login', checkRegisterBody, checkUsernameExists, (req, res, next) => {
  if(bcrypt.compareSync(req.body.password, req.user.password)) {
    const token = tokenBuilder(req.user)
    res.json({
